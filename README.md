@@ -26,6 +26,7 @@ You can create simple conditions or combine them into more complex conditions us
 
 - **`createOrCondition(conditions)`**: Creates an OR condition. The result is true if at least one of the nested conditions is true.
 - **`createAndCondition(conditions)`**: Creates an AND condition. The result is true only if all of the nested conditions are true.
+- In both cases, the function receives an array of conditions as a parameter
 
 ### Verifying Conditions
 
