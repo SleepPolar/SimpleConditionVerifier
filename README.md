@@ -54,10 +54,6 @@ function valueFunct(condition) {
     return condition.value;
 }
 
-function falseFunct(condition) {
-    return condition.value;
-}
-
 function createOrCondition(conditions) {
     return {
         type: "OR",
