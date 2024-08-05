@@ -95,5 +95,6 @@ const Test = createOrCondition([
 ])
 
 console.log(verifyConditions(Test)) // Expected result = false
+```
 
 // Este repositorio está diseñado para ser una herramienta de ejemplo, demostrando cómo manejar la verificación de condiciones lógicas en JavaScript.
