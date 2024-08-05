@@ -55,14 +55,17 @@ In case it is not very clear, here is a small example of how to use **SimpleCond
 
 You create a function that performs some validation and returns `true` or `false` depending on the result. In this scenario, no actual validation is performed; the value of the condition object is simply returned. This can be useful when you want to modify the value of the object elsewhere in the code and return it directly.
 
+```javascript
 function valueFunct(condition) {
     return condition.value;
 }
+```
 
 ### 2. Define Simple Conditions
 
 Here, two simple conditions are defined using the `valueFunct` function. `trueCondition` always returns `true`, and `falseCondition` always returns `false`.
 
+```javascript
 const trueCondition = {
     verify: valueFunct,
     value: true,
@@ -72,6 +75,7 @@ const falseCondition = {
     verify: valueFunct,
     value: false,
 }
+```
 
 ### 3. Create Functions for Composing Conditions
 
@@ -79,26 +83,31 @@ The following functions help create compound conditions using logical operators:
 
 - `createOrCondition` creates a condition that is true if at least one of its sub-conditions is true.
 
+```javascript
 function createOrCondition(conditions) {
     return {
         type: "OR",
         conditions: conditions
     }
 }
+```
 
 - `createAndCondition` creates a condition that is true only if all of its sub-conditions are true.
 
+```javascript
 function createAndCondition(conditions) {
     return {
         type: "AND",
         conditions: conditions
     }
 }
+```
 
 ### 4. Verify Conditions
 
 The `verifyConditions` function evaluates a condition. It recursively evaluates conditions based on their type:
 
+```javascript
 function verifyConditions(condition) {
     return condition.type === 'OR' 
     ? condition.conditions.some(verifyConditions) 
@@ -106,11 +115,13 @@ function verifyConditions(condition) {
         ? condition.conditions.every(verifyConditions) 
         : condition.verify(condition)
 }
+```
 
 ### 5. Example of a Complex Condition
 
 Here is an example of a complex condition that combines multiple conditions using `createOrCondition` and `createAndCondition`:
 
+```javascript
 const Test = createOrCondition([
     createAndCondition([
         trueCondition,
@@ -127,6 +138,7 @@ const Test = createOrCondition([
     ]),
     createAndCondition([falseCondition])
 ])
+```
 
 This complex condition evaluates to:
 
@@ -136,7 +148,9 @@ This complex condition evaluates to:
 
 Finally, use the `verifyConditions` function to evaluate the complex condition:
 
+```javascript
 console.log(verifyConditions(Test)) // Expected result = false
+```
 
 In this case, the expected result is `false`, as none of the compound conditions meet the criteria to be true.
 
