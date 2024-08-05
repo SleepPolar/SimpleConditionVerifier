@@ -41,23 +41,63 @@ In case it is not very clear, here is a small example of how to use **SimpleCond
 
 ```javascript
 const trueCondition = {
-    verify: condition => condition.value,
-    value: true
-};
+    verify: valueFunct,
+    value: true,
+}
 
 const falseCondition = {
-    verify: condition => condition.value,
-    value: false
-};
+    verify: valueFunct,
+    value: false,
+}
 
-const ageCondition = {
-    verify: condition => condition.age >= 18,
-    age: 20
-};
+function valueFunct(condition) {
+    return condition.value;
+}
 
-const compositeCondition = createOrCondition([
-    createAndCondition([trueCondition, createOrCondition([falseCondition, falseCondition])]),
-    createAndCondition([trueCondition, falseCondition])
-]);
+function falseFunct(condition) {
+    return condition.value;
+}
 
-console.log(verifyConditions(compositeCondition)); // Evaluates the composite condition
+function createOrCondition(conditions) {
+    return {
+        type: "OR",
+        conditions: conditions
+    }
+}
+
+function createAndCondition(conditions) {
+    return {
+        type: "AND",
+        conditions: conditions
+    }
+}
+
+function verifyConditions(condition) {
+    return condition.type === 'OR' 
+    ? condition.conditions.some(verifyConditions) 
+    : condition.type === 'AND' 
+        ? condition.conditions.every(verifyConditions) 
+        : condition.verify(condition)
+}
+
+// (true && (false || false)) || (true && false && (false || true)) || (false || true) && false) && false
+const Test = createOrCondition([
+    createAndCondition([
+        trueCondition,
+        createOrCondition([falseCondition, falseCondition])
+    ]),
+    createAndCondition([
+        trueCondition,
+        falseCondition,
+        createOrCondition([falseCondition, trueCondition])
+    ]),
+    createAndCondition([
+        falseCondition,
+        createOrCondition([falseCondition, trueCondition])
+    ]),
+    createAndCondition([falseCondition])
+])
+
+console.log(verifyConditions(Test)) // Expected result = false
+
+// Este repositorio está diseñado para ser una herramienta de ejemplo, demostrando cómo manejar la verificación de condiciones lógicas en JavaScript.
