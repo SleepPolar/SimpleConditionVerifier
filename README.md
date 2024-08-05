@@ -37,7 +37,7 @@ The `verifyConditions(condition)` function evaluates the condition:
 
 ## Example
 
-Here's a simple example of how to use **SimpleConditionVerifier**:
+In case it is not very clear, here is a small example of how to use **SimpleConditionVerifier**:
 
 ```javascript
 const trueCondition = {
