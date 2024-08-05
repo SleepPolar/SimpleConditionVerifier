@@ -40,6 +40,10 @@ The `verifyConditions(condition)` function evaluates the condition:
 In case it is not very clear, here is a small example of how to use **SimpleConditionVerifier**:
 
 ```javascript
+function valueFunct(condition) {
+    return condition.value;
+}
+
 const trueCondition = {
     verify: valueFunct,
     value: true,
@@ -48,10 +52,6 @@ const trueCondition = {
 const falseCondition = {
     verify: valueFunct,
     value: false,
-}
-
-function valueFunct(condition) {
-    return condition.value;
 }
 
 function createOrCondition(conditions) {
