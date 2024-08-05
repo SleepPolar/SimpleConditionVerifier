@@ -152,6 +152,4 @@ Finally, use the `verifyConditions` function to evaluate the complex condition:
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
-In this case, the expected result is `false`, as none of the compound conditions meet the criteria to be true.
-
 // Este repositorio está diseñado para ser una herramienta de ejemplo, demostrando cómo manejar la verificación de condiciones lógicas en JavaScript.
