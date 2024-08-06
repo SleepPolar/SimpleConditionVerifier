@@ -156,4 +156,4 @@ Finally, use the `verifyConditions` function to evaluate the complex condition:
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
-// Este repositorio está diseñado para ser una herramienta de ejemplo, demostrando cómo manejar la verificación de condiciones lógicas en JavaScript.
+**This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
