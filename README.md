@@ -133,15 +133,16 @@ const Test = createOrCondition([
         createOrCondition([falseCondition, trueCondition])
     ]),
     createAndCondition([
-        falseCondition,
-        createOrCondition([falseCondition, trueCondition])
-    ]),
-    createAndCondition([falseCondition])
+        createAndCondition([
+            createOrCondition([trueCondition, trueCondition]),
+            falseCondition
+        ]),
+        falseCondition
+    ])
 ])
 ```
 
 This complex condition evaluates to:
-
 **(true && (false || false)) || (true && false && (false || true)) || (false || true) && false) && false**
 
 ### 6. Evaluate the Complex Condition
