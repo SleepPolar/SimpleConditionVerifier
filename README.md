@@ -135,7 +135,7 @@ const Test = createOrCondition([
     createAndCondition([
         createAndCondition([
             createOrCondition([trueCondition, trueCondition]),
-            falseCondition
+            trueCondition
         ]),
         falseCondition
     ])
