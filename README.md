@@ -53,7 +53,7 @@ In case it is not very clear, here is a small example of how to use **SimpleCond
 
 ### 1. Define a Validation Function
 
-You create a function that performs some validation and returns `true` or `false` depending on the result. In this scenario, no actual validation is performed; the value of the condition object is simply returned. This can be useful when you want to modify the value of the object elsewhere in the code and return it directly.
+You create a function that performs some validation and returns `true` or `false` depending on the result. In this example case, no actual validation is performed; the value of the condition object is simply returned. This can be useful when you want to modify the value of the object elsewhere in the code and return it directly.
 
 ```javascript
 function valueFunct(condition) {
