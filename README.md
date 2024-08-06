@@ -105,7 +105,10 @@ function createAndCondition(conditions) {
 
 ### 4. Verify Conditions
 
-The `verifyConditions` function evaluates a condition. It recursively evaluates conditions based on their type:
+verifyConditions is the main function that evaluates a condition.
+- If the condition is of type "OR", it uses some to check if any of the subconditions are true.
+- If the condition is of type "AND", it uses every to check if all subconditions are true.
+- If it is neither "OR" nor "AND", it simply calls the verification function associated with the condition.
 
 ```javascript
 function verifyConditions(condition) {
