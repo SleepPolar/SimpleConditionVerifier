@@ -191,7 +191,7 @@ const Test = createOrCondition([
 - If `trueCondition`, `falseCondition`, and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
 - If `falseCOndition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
-### Third Complex Condition
+### Third Compound Condition
 **((true || true) && false) && false)**
 ```javascript
 const Test = createOrCondition([
