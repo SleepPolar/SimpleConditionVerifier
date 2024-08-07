@@ -27,6 +27,7 @@ You can create simple conditions or combine them into more compound conditions u
 - **`createOrCondition(conditions)`**: Creates an OR condition. The result is true if at least one of the nested conditions is true.
 - **`createAndCondition(conditions)`**: Creates an AND condition. The result is true only if all of the nested conditions are true.
 - In both cases, the function receives an array of conditions as a parameter
+- An easy way to understand it is to see createAndCondition and createOrCondition as a parenthesis, and what is passed as a parameter is what is inside that parenthesis
 
 ### Verifying Conditions
 
@@ -250,7 +251,7 @@ Let's remember the rules:
 - If **`"AND"`** all conditions must be true
 - Analyzed from left to right
 
-*To simplify it, we will put what the compound condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
+*To simplify it, we will put what the compound condition would look like instead of showing the Test object, to make it easier to understand. If you want, after reading this you can analyze the Test object.*
 
 **(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
@@ -261,7 +262,7 @@ Let's remember the rules:
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is an **`"OR"`** parenthesis, since all the conditions of the parenthesis of type **`"OR"`** are false. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition gives `"true"`, then it continues with the next, the next condition is an **`"OR"`** parenthesis, since all the conditions of the parenthesis of type **`"OR"`** are `false`. The result will be `false`
 
 ### Second Compound Condition
 **analyzes = (true && false && (false || true))**
@@ -270,7 +271,7 @@ The parenthesis is of type **`"AND"`** and the first condition gives "true", the
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type **`"AND"`** all conditions must be true. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition gives `"true"`, then it continues with the next, the next condition is `false`, since there is a `false` condition, there is no need to check the following conditions, since in the parentheses of type **`"AND"`** all conditions must be `true`. The result will be `false`
 
 ### Third Compound Condition
 **analyzes = ((true || true) && false) && false)**
@@ -279,7 +280,7 @@ The parenthesis is of type **`"AND"`** and the first condition gives "true", the
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type **`"AND"`** and the first condition is a parenthesis of type **`"AND"`**, whose first condition is a parenthesis of type **`"OR"`**, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type **`"OR"`**, thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of **`"AND"`**, we no longer have to validate the last condition. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition is a parenthesis of type **`"AND"`**, whose first condition is a parenthesis of type **`"OR"`**, the first condition of that parenthesis is `true`, since it is `true` it is not necessary to verify the next condition of that parenthesis since it is of type **`"OR"`**, thus we end up with that parenthesis, the next condition is `false`, since it is `false` and it is a parenthesis of **`"AND"`**, we no longer have to validate the last condition. The result will be `false`
 
 ### Result
 - Conditions that exist: 11
