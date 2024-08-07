@@ -222,7 +222,7 @@ That could be something like this:
 
 **((true && (false || false)) || (true && false && (false || true)) || ((true || true) && false)) && false**
 ```javascript
-const finalCondition = createAndCondition([
+const Test = createAndCondition([
     createOrCondition([
         createAndCondition([
             trueCondition,
@@ -251,7 +251,20 @@ const finalCondition = createAndCondition([
 ]);
 ```
 
-## Showing the path that the verifyConditions takes in the [Test](#example-of-a-complex-condition)
+## Showing the path that the verifyConditions takes in the Test
+Let's remember the rules:
+- If it is of type "OR" or "AND" it means that it is a complex condition, that is, a parenthesis with conditions.
+- If "OR" at least one of the conditions must be true.
+- If "AND" all conditions must be true
+- It is read from left to right
+- 
+*To simplify it, we will put what the complex condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
+
+**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
+
+### Step 1
+analyzes = (true && (false || false))
+
 
 
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
