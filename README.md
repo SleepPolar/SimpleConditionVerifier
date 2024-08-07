@@ -251,7 +251,7 @@ const finalCondition = createAndCondition([
 ]);
 ```
 
-## Showing the path that the verifyConditions takes in the [5. Example of a Complex Condition](#test)
+## Showing the path that the verifyConditions takes in the [Test](#example-of-a-complex-condition)
 
 
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
