@@ -216,4 +216,38 @@ const Test = createOrCondition([
 - If `createAndCondition(...)` and `trueCondition` are `true`, then that parenthesis will return `true`
 - If `trueCondition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
+### Defining the base as AND
+You could also achieve the same end result by evaluating the conditions but defining the base as "AND" instead of "OR". You are free to choose the one you want, but it would be better to use the one that is easiest to understand in your case
+That could be something like this:
+**((true && (false || false)) || (true && false && (false || true)) || ((true || true) && false)) && false**
+```javascript
+const finalCondition = createAndCondition([
+    createOrCondition([
+        createAndCondition([
+            trueCondition,
+            createOrCondition([
+                falseCondition,
+                falseCondition
+            ])
+        ]),
+        createAndCondition([
+            trueCondition,
+            falseCondition,
+            createOrCondition([
+                falseCondition,
+                trueCondition
+            ])
+        ]),
+        createAndCondition([
+            createOrCondition([
+                falseCondition,
+                trueCondition
+            ]),
+            falseCondition
+        ])
+    ]),
+    falseCondition
+]);
+```
+
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
