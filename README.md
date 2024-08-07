@@ -33,7 +33,7 @@ You can create simple conditions or combine them into more complex conditions us
 The `verifyConditions(condition)` function evaluates the condition:
 - If the condition type is "OR", it uses `some` to check if at least one nested condition is true.
 - If the condition type is "AND", it uses `every` to ensure all nested conditions are true.
-- For non-composite conditions, it calls the `verify` function directly.
+- For non-compound conditions, it calls the `verify` function directly.
 
 ## Example
 
@@ -108,9 +108,9 @@ function verifyConditions(condition) {
 }
 ```
 
-### 5. Example of a Complex Condition
+### 5. Example of a Compound Condition
 
-Here is an example of a complex condition that combines multiple conditions using `createOrCondition` and `createAndCondition`:
+Here is an example of a compound condition that combines multiple conditions using `createOrCondition` and `createAndCondition`:
 
 ```javascript
 const Test = createOrCondition([
@@ -133,33 +133,33 @@ const Test = createOrCondition([
 ])
 ```
 
-This complex condition evaluates to:
+This compound condition evaluates to:
 **(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
 
-### 6. Evaluate the Complex Condition
+### 6. Evaluate the Compound Condition
 
-Finally, use the `verifyConditions` function to evaluate the complex condition:
+Finally, use the `verifyConditions` function to evaluate the compound condition:
 
 ```javascript
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
-## Detailed explanation of the Complex Condition example
+## Detailed explanation of the Compound Condition example
 
-In the previous section, we defined a complex condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
+In the previous section, we defined a compound condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
 
 First let's see what we want to achieve, in this case we want to achieve this:
 
 **(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
 ### Start by defining whether the base will be OR or AND
-Since the complex condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
+Since the compound condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
 ```javascript
 const Test = createOrCondition([ // Explaining this part
 ])
 ```
 
-### First Complex Condition
+### First Compound Condition
 **(true && (false || false))**
 ```javascript
 const Test = createOrCondition([
@@ -173,7 +173,7 @@ An easy way to understand it is to see `createAndCondition` and `createOrConditi
 - If `trueCondition` and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
 - If `falseCondition` or `falseCondition` is `true`, then that parenthesis will return to `true`
 
-### Second Complex Condition
+### Second Compound Condition
 **(true && false && (false || true))**
 ```javascript
 const Test = createOrCondition([
@@ -244,16 +244,16 @@ const Test = createAndCondition([
 
 ## Showing the path that the verifyConditions takes in the Test
 Let's remember the rules:
-- If it is of type **`"OR"`** or **`"AND"`** it means that it is a complex condition, that is, a parenthesis with conditions.
+- If it is of type **`"OR"`** or **`"AND"`** it means that it is a compound condition, that is, a parenthesis with conditions.
 - If **`"OR"`** at least one of the conditions must be true.
 - If **`"AND"`** all conditions must be true
 - Analyzed from left to right
 
-*To simplify it, we will put what the complex condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
+*To simplify it, we will put what the compound condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
 
 **(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
-### First Complex Condition
+### First Compound Condition
 **analyzes = (true && (false || false))**
 - Conditions that exist: 3
 - verified conditions: 3
@@ -262,7 +262,7 @@ Let's remember the rules:
 **Little explanation:**
 The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is an **`"OR"`** parenthesis, since all the conditions of the parenthesis of type **`"OR"`** are false. The result will be false
 
-### Second Complex Condition
+### Second Compound Condition
 **analyzes = (true && false && (false || true))**
 - Conditions that exist: 4
 - verified conditions: 2
@@ -271,7 +271,7 @@ The parenthesis is of type **`"AND"`** and the first condition gives "true", the
 **Little explanation:**
 The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type **`"AND"`** all conditions must be true. The result will be false
 
-### Third Complex Condition
+### Third Compound Condition
 **analyzes = ((true || true) && false) && false)**
 - Conditions that exist: 4
 - verified conditions: 2
