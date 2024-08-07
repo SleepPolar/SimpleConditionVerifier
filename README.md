@@ -150,7 +150,7 @@ In the previous section, we defined a complex condition called Test using a comb
 
 First let's see what we want to achieve, in this case we want to achieve this:
 
-**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && true) && false)**
+**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
 
 ### Start by defining whether the base will be OR or AND
 Since the complex condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
@@ -192,7 +192,7 @@ const Test = createOrCondition([
 - If `falseCOndition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
 ### Third Complex Condition
-**((true || true) && true) && false)**
+**((true || true) && false) && false)**
 ```javascript
 const Test = createOrCondition([
     createAndCondition([
@@ -207,7 +207,7 @@ const Test = createOrCondition([
     createAndCondition([ // Explaining this part
         createAndCondition([
             createOrCondition([trueCondition, trueCondition]),
-            trueCondition
+            falseCondition
         ]),
         falseCondition
     ])
