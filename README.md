@@ -290,4 +290,4 @@ The parenthesis is of type **`"AND"`** and the first condition is a parenthesis 
 ## Contributions
 If you would like to contribute to the project, please submit a pull request with your changes. Make sure your code is well documented and tested.
 
-**This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript. You can adapt it to your needs or use it as a reference for how to manage logical conditions in your own projects.** 😀👍
+***This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript. You can adapt it to your needs or use it as a reference for how to manage logical conditions in your own projects.*** 😀👍
