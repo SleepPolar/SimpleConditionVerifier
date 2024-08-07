@@ -258,6 +258,7 @@ Let's remember the rules:
 - Conditions that exist: 3
 - verified conditions: 3
 - The result is: false
+
 **Little explanation:**
 The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is an "OR" parenthesis, since all the conditions of the parenthesis of type "OR" are false.
 
@@ -266,6 +267,7 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - Conditions that exist: 4
 - verified conditions: 2
 - The result is: false
+
 **Little explanation:**
 The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type "AND" all conditions must be true.
 
@@ -274,6 +276,7 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - Conditions that exist: 4
 - verified conditions: 2
 - The result is: false
+
 **Little explanation:**
 The parenthesis is of type “AND” and the first condition is a parenthesis of type “AND”, whose first condition is a parenthesis of type “OR”, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type "OR", thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of "AND", we no longer have to validate the last condition.
 
