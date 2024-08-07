@@ -257,7 +257,7 @@ Let's remember the rules:
 - If "OR" at least one of the conditions must be true.
 - If "AND" all conditions must be true
 - It is read from left to right
-- 
+
 *To simplify it, we will put what the complex condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
 
 **(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
