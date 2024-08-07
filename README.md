@@ -260,7 +260,7 @@ Let's remember the rules:
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is an "OR" parenthesis, since all the conditions of the parenthesis of type "OR" are false.
+The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is an "OR" parenthesis, since all the conditions of the parenthesis of type "OR" are false. The result will be false
 
 ### Second Complex Condition
 **analyzes = (true && false && (false || true))**
@@ -269,7 +269,7 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type "AND" all conditions must be true.
+The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type "AND" all conditions must be true. The result will be false
 
 ### Third Complex Condition
 **analyzes = ((true || true) && false) && false)**
@@ -278,7 +278,12 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type “AND” and the first condition is a parenthesis of type “AND”, whose first condition is a parenthesis of type “OR”, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type "OR", thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of "AND", we no longer have to validate the last condition.
+The parenthesis is of type “AND” and the first condition is a parenthesis of type “AND”, whose first condition is a parenthesis of type “OR”, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type "OR", thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of "AND", we no longer have to validate the last condition. The result will be false
+
+### Result
+- Conditions that exist: 11
+- verified conditions: 7
+- The result is: false
 
 
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
