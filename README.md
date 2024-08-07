@@ -134,7 +134,7 @@ const Test = createOrCondition([
 ```
 
 This complex condition evaluates to:
-**(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)**
+**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
 
 ### 6. Evaluate the Complex Condition
 
@@ -150,12 +150,12 @@ In the previous section, we defined a complex condition called Test using a comb
 
 First let's see what we want to achieve, in this case we want to achieve this:
 
-**(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)**
+**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && true) && false)**
 
 ### Start by defining whether the base will be OR or AND
 Since the complex condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
 ```javascript
-const Test = createOrCondition([
+const Test = createOrCondition([ // Explaining this part
 ])
 ```
 
@@ -163,15 +163,15 @@ const Test = createOrCondition([
 **(true && (false || false))**
 ```javascript
 const Test = createOrCondition([
-    createAndCondition([
+    createAndCondition([ // Explaining this part
         trueCondition,
         createOrCondition([falseCondition, falseCondition])
     ]),
 ])
 ```
-Una forma facil de entenderlo, es ver a `createAndCondition` y `createOrCondition` como un parentesis, y lo que se pasa por parametro es lo que hay dentro de ese parentesis
-- Si `trueCondition` y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
-- Si `falseCondition` o `falseCondition` es `true`, entonces ese parentesis volvera true.
+An easy way to understand it is to see `createAndCondition` and `createOrCondition` as a parenthesis, and what is passed as a parameter is what is inside that parenthesis
+- If `trueCondition` and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
+- If `falseCondition` or `falseCondition` is `true`, then that parenthesis will return to `true`
 
 ### Segunda Subcondición:
 **(true && false && (false || true))**
@@ -181,18 +181,18 @@ const Test = createOrCondition([
         trueCondition,
         createOrCondition([falseCondition, falseCondition])
     ]),
-    createAndCondition([ // Explicando esta parte
+    createAndCondition([ // Explaining this part
         trueCondition,
         falseCondition,
         createOrCondition([falseCondition, trueCondition])
     ]),
 ])
 ```
-- Si `trueCondition`, `falseCondition`, y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
-- Si `falseCOndition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
+- If `trueCondition`, `falseCondition`, and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
+- If `falseCOndition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
 ### Segunda Subcondición:
-**((false || true) && false) && false)**
+**((true || true) && true) && false)**
 ```javascript
 const Test = createOrCondition([
     createAndCondition([
@@ -204,7 +204,7 @@ const Test = createOrCondition([
         falseCondition,
         createOrCondition([falseCondition, trueCondition])
     ]),
-    createAndCondition([ // Explicando esta parte
+    createAndCondition([ // Explaining this part
         createAndCondition([
             createOrCondition([trueCondition, trueCondition]),
             trueCondition
@@ -213,7 +213,7 @@ const Test = createOrCondition([
     ])
 ])
 ```
-- Si `createAndCondition(...)` y `falseCondition` son `true`, entonces ese parentesis devolvera `true`.
-- Si `trueCondition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
+- If `createAndCondition(...)` and `trueCondition` are `true`, then that parenthesis will return `true`
+- If `trueCondition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
