@@ -287,6 +287,7 @@ The parenthesis is of type **`"AND"`** and the first condition is a parenthesis 
 - verified conditions: 7
 - The result is: false
 
+
 ## Contributions
 If you would like to contribute to the project, please submit a pull request with your changes. Make sure your code is well documented and tested.
 
