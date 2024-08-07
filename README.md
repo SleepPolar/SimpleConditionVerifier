@@ -22,7 +22,7 @@ You define functions to verify conditions. These functions should:
 
 ### Creating Conditions
 
-You can create simple conditions or combine them into more complex conditions using logical operators:
+You can create simple conditions or combine them into more compound conditions using logical operators:
 
 - **`createOrCondition(conditions)`**: Creates an OR condition. The result is true if at least one of the nested conditions is true.
 - **`createAndCondition(conditions)`**: Creates an AND condition. The result is true only if all of the nested conditions are true.
