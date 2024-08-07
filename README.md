@@ -152,23 +152,30 @@ First let's see what we want to achieve, in this case we want to achieve this:
 
 **(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)**
 
+### Start by defining whether the base will be OR or AND
+Since the complex condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
+```javascript
 const Test = createOrCondition([
 ])
+```
 
 ### Primera Subcondición:
 **(true && (false || false))**
+```javascript
 const Test = createOrCondition([
     createAndCondition([
         trueCondition,
         createOrCondition([falseCondition, falseCondition])
     ]),
 ])
+```
 Una forma facil de entenderlo, es ver a `createAndCondition` y `createOrCondition` como un parentesis, y lo que se pasa por parametro es lo que hay dentro de ese parentesis
 - Si `trueCondition` y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
 - Si `falseCondition` o `falseCondition` es `true`, entonces ese parentesis volvera true.
 
 ### Segunda Subcondición:
 **(true && false && (false || true))**
+```javascript
 const Test = createOrCondition([
     createAndCondition([
         trueCondition,
@@ -180,11 +187,13 @@ const Test = createOrCondition([
         createOrCondition([falseCondition, trueCondition])
     ]),
 ])
+```
 - Si `trueCondition`, `falseCondition`, y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
 - Si `falseCOndition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
 
 ### Segunda Subcondición:
 **((false || true) && false) && false)**
+```javascript
 const Test = createOrCondition([
     createAndCondition([
         trueCondition,
@@ -203,6 +212,7 @@ const Test = createOrCondition([
         falseCondition
     ])
 ])
+```
 - Si `createAndCondition(...)` y `falseCondition` son `true`, entonces ese parentesis devolvera `true`.
 - Si `trueCondition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
 
