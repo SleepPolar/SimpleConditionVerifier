@@ -149,7 +149,7 @@ console.log(verifyConditions(Test)) // Expected result = false
 In the previous section, we defined a complex condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
 
 First let's see what we want to achieve, in this case we want to achieve this:
-**(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)**
+(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)
 
 const Test = createOrCondition([
 ])
