@@ -144,7 +144,7 @@ Finally, use the `verifyConditions` function to evaluate the complex condition:
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
-### Detailed explanation of the Complex Condition example
+## Detailed explanation of the Complex Condition example
 
 In the previous section, we defined a complex condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
 
