@@ -146,7 +146,7 @@ Finally, use the `verifyConditions` function to evaluate the compound condition:
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
-## Detailed explanation of the Compound Condition example
+## Explanation of the Compound Condition example
 
 In the previous section, we defined a compound condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
 
