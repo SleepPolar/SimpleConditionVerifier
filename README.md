@@ -159,7 +159,7 @@ const Test = createOrCondition([ // Explaining this part
 ])
 ```
 
-### First Complex Condition:
+### First Complex Condition
 **(true && (false || false))**
 ```javascript
 const Test = createOrCondition([
@@ -173,7 +173,7 @@ An easy way to understand it is to see `createAndCondition` and `createOrConditi
 - If `trueCondition` and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
 - If `falseCondition` or `falseCondition` is `true`, then that parenthesis will return to `true`
 
-### Second Complex Condition:
+### Second Complex Condition
 **(true && false && (false || true))**
 ```javascript
 const Test = createOrCondition([
@@ -191,7 +191,7 @@ const Test = createOrCondition([
 - If `trueCondition`, `falseCondition`, and `createOrCondition(...)` are `true`, then that parenthesis will return `true`
 - If `falseCOndition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
-### Third Complex Condition:
+### Third Complex Condition
 **((true || true) && true) && false)**
 ```javascript
 const Test = createOrCondition([
