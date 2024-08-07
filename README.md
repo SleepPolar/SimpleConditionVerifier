@@ -156,4 +156,65 @@ Finally, use the `verifyConditions` function to evaluate the complex condition:
 console.log(verifyConditions(Test)) // Expected result = false
 ```
 
+### Detailed explanation of the Complex Condition example
+
+In the previous section, we defined a complex condition called Test using a combination of createOrCondition and createAndCondition. Let's analyze how this condition is structured.
+
+First let's see what we want to achieve, in this case we want to achieve this:
+**(true && (false || false)) || (true && false && (false || true)) || ((false || true) && false) && false)**
+
+const Test = createOrCondition([
+])
+
+### Primera Subcondición:
+**(true && (false || false))**
+const Test = createOrCondition([
+    createAndCondition([
+        trueCondition,
+        createOrCondition([falseCondition, falseCondition])
+    ]),
+])
+Una forma facil de entenderlo, es ver a `createAndCondition` y `createOrCondition` como un parentesis, y lo que se pasa por parametro es lo que hay dentro de ese parentesis
+- Si `trueCondition` y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
+- Si `falseCondition` o `falseCondition` es `true`, entonces ese parentesis volvera true.
+
+### Segunda Subcondición:
+**(true && false && (false || true))**
+const Test = createOrCondition([
+    createAndCondition([
+        trueCondition,
+        createOrCondition([falseCondition, falseCondition])
+    ]),
+    createAndCondition([ // Explicando esta parte
+        trueCondition,
+        falseCondition,
+        createOrCondition([falseCondition, trueCondition])
+    ]),
+])
+- Si `trueCondition`, `falseCondition`, y `createOrCondition(...)` son `true`, entonces ese parentesis devolvera `true`.
+- Si `falseCOndition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
+
+### Segunda Subcondición:
+**((false || true) && false) && false)**
+const Test = createOrCondition([
+    createAndCondition([
+        trueCondition,
+        createOrCondition([falseCondition, falseCondition])
+    ]),
+    createAndCondition([
+        trueCondition,
+        falseCondition,
+        createOrCondition([falseCondition, trueCondition])
+    ]),
+    createAndCondition([ // Explicando esta parte
+        createAndCondition([
+            createOrCondition([trueCondition, trueCondition]),
+            trueCondition
+        ]),
+        falseCondition
+    ])
+])
+- Si `createAndCondition(...)` y `falseCondition` son `true`, entonces ese parentesis devolvera `true`.
+- Si `trueCondition`, o `trueCondition` es `true`, entonces ese parentesis devolvera true
+
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
