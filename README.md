@@ -217,7 +217,7 @@ const Test = createOrCondition([
 - If `trueCondition`, or `trueCondition` is `true`, then that parenthesis will return `true`
 
 ### Defining the base as AND
-You could also achieve the same end result by evaluating the conditions but defining the base as "AND" instead of "OR". You are free to choose the one you want, but it would be better to use the one that is easiest to understand in your case
+You could also achieve the same end result by evaluating the conditions but defining the base as **`"AND"`"** instead of **`"OR"`**. You are free to choose the one you want, but it would be better to use the one that is easiest to understand in your case
 That could be something like this:
 
 **((true && (false || false)) || (true && false && (false || true)) || ((true || true) && false)) && false**
@@ -244,9 +244,9 @@ const Test = createAndCondition([
 
 ## Showing the path that the verifyConditions takes in the Test
 Let's remember the rules:
-- If it is of type "OR" or "AND" it means that it is a complex condition, that is, a parenthesis with conditions.
-- If "OR" at least one of the conditions must be true.
-- If "AND" all conditions must be true
+- If it is of type **`"OR"`** or **`"AND"`** it means that it is a complex condition, that is, a parenthesis with conditions.
+- If **`"OR"`** at least one of the conditions must be true.
+- If **`"AND"`** all conditions must be true
 - Analyzed from left to right
 
 *To simplify it, we will put what the complex condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
@@ -260,7 +260,7 @@ Let's remember the rules:
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is an "OR" parenthesis, since all the conditions of the parenthesis of type "OR" are false. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is an **`"OR"`** parenthesis, since all the conditions of the parenthesis of type **`"OR"`** are false. The result will be false
 
 ### Second Complex Condition
 **analyzes = (true && false && (false || true))**
@@ -269,7 +269,7 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type "AND" all conditions must be true. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type **`"AND"`** all conditions must be true. The result will be false
 
 ### Third Complex Condition
 **analyzes = ((true || true) && false) && false)**
@@ -278,7 +278,7 @@ The parenthesis is of type "AND" and the first condition gives "true", then it c
 - The result is: false
 
 **Little explanation:**
-The parenthesis is of type “AND” and the first condition is a parenthesis of type “AND”, whose first condition is a parenthesis of type “OR”, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type "OR", thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of "AND", we no longer have to validate the last condition. The result will be false
+The parenthesis is of type **`"AND"`** and the first condition is a parenthesis of type **`"AND"`**, whose first condition is a parenthesis of type **`"OR"`**, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type **`"OR"`**, thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of **`"AND"`**, we no longer have to validate the last condition. The result will be false
 
 ### Result
 - Conditions that exist: 11
