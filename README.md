@@ -150,7 +150,7 @@ In the previous section, we defined a complex condition called Test using a comb
 
 First let's see what we want to achieve, in this case we want to achieve this:
 
-**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
+**(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
 ### Start by defining whether the base will be OR or AND
 Since the complex condition we want to achieve is divided between "OR" conditions, then we will use the "createOrCondition" as a basis
@@ -226,24 +226,15 @@ const Test = createAndCondition([
     createOrCondition([
         createAndCondition([
             trueCondition,
-            createOrCondition([
-                falseCondition,
-                falseCondition
-            ])
+            createOrCondition([falseCondition, falseCondition])
         ]),
         createAndCondition([
             trueCondition,
             falseCondition,
-            createOrCondition([
-                falseCondition,
-                trueCondition
-            ])
+            createOrCondition([falseCondition, trueCondition])
         ]),
         createAndCondition([
-            createOrCondition([
-                falseCondition,
-                trueCondition
-            ]),
+            createOrCondition([trueCondition, trueCondition]),
             falseCondition
         ])
     ]),
@@ -256,15 +247,35 @@ Let's remember the rules:
 - If it is of type "OR" or "AND" it means that it is a complex condition, that is, a parenthesis with conditions.
 - If "OR" at least one of the conditions must be true.
 - If "AND" all conditions must be true
-- It is read from left to right
+- Analyzed from left to right
 
 *To simplify it, we will put what the complex condition would look like instead of showing the test object, to make it easier to understand. If you want, after reading this you can analyze the test object.*
 
-**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
+**(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
-### Step 1
-analyzes = (true && (false || false))
+### First Complex Condition
+**analyzes = (true && (false || false))**
+- Conditions that exist: 3
+- verified conditions: 3
+- The result is: false
+**Little explanation:**
+The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is an "OR" parenthesis, since all the conditions of the parenthesis of type "OR" are false.
 
+### Second Complex Condition
+**analyzes = (true && false && (false || true))**
+- Conditions that exist: 4
+- verified conditions: 2
+- The result is: false
+**Little explanation:**
+The parenthesis is of type "AND" and the first condition gives "true", then it continues with the next, the next condition is false, since there is a false condition, there is no need to check the following conditions, since in the parentheses of type "AND" all conditions must be true.
+
+### Third Complex Condition
+**analyzes = ((true || true) && false) && false)**
+- Conditions that exist: 4
+- verified conditions: 2
+- The result is: false
+**Little explanation:**
+The parenthesis is of type “AND” and the first condition is a parenthesis of type “AND”, whose first condition is a parenthesis of type “OR”, the first condition of that parenthesis is true, since it is true it is not necessary to verify the next condition of that parenthesis since it is of type "OR", thus we end up with that parenthesis, the next condition is false, since it is false and it is a parenthesis of "AND", we no longer have to validate the last condition.
 
 
 **This repository is designed to be an example tool, demonstrating a way to handle checking logical conditions in JavaScript.**
