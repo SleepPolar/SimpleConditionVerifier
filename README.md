@@ -134,7 +134,8 @@ const Test = createOrCondition([
 ```
 
 This compound condition evaluates to:
-**(true && (false || false)) || (true && false && (false || true)) || ((true || true) && false) && false)**
+
+**(true && (false || false)) || (true && false && (false || true)) || (((true || true) && false) && false)**
 
 ### 6. Evaluate the Compound Condition
 
