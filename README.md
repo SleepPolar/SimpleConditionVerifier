@@ -39,18 +39,6 @@ The `verifyConditions(condition)` function evaluates the condition:
 
 In case it is not very clear, here is a small example of how to use **SimpleConditionVerifier**:
 
-You create a function that performs some validation and returns true or false depending on the result.
-In this scenario no validation is performed, the value of the condition object is simply returned, sometimes it might be useful not to perform validation and simply modify the value of the object elsewhere in the code and return it.
-```javascript
-function valueFunct(condition) {
-    return condition.value;
-}
-```
-
-## Example
-
-In case it is not very clear, here is a small example of how to use **SimpleConditionVerifier**:
-
 ### 1. Define a Validation Function
 
 You create a function that performs some validation and returns `true` or `false` depending on the result. In this example case, no actual validation is performed; the value of the condition object is simply returned. This can be useful when you want to modify the value of the object elsewhere in the code and return it directly. And the returned value indicates whether the condition is met or not.
